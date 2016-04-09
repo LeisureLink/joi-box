@@ -4,3 +4,6 @@ test/
 circle.yml
 wallaby.js
 src/
+.idea/
+coverage/
+.babelrc
