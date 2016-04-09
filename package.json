@@ -1,0 +1,32 @@
+{
+  "name": "joi-box",
+  "version": "0.0.1",
+  "description": "A suppository for Joi schemas.",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d lib",
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ci": "echo Nothing"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "joi": "^8.0.5",
+    "mod.js": "^1.0.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.7.5",
+    "babel-core": "^6.7.4",
+    "babel-eslint": "^6.0.2",
+    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-preset-async-to-bluebird": "^1.0.0",
+    "babel-preset-es2015-node4": "^2.1.0",
+    "babel-preset-stage-3": "^6.5.0",
+    "chai": "^3.5.0",
+    "eslint": "^2.7.0",
+    "eslint-watch": "^2.1.10",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.4.5"
+  }
+}
