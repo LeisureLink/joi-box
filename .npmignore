@@ -1,0 +1,6 @@
+test
+.eslintignore
+.eslintrc
+circle.yml
+wallaby.js
+src
