@@ -1,0 +1,13 @@
+{
+  "extends": "leisurelink",
+  "env": {
+    "es6": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "consistent-return": 1,
+    "strict": 1
+  }
+}

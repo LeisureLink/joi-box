@@ -6,8 +6,10 @@
   "scripts": {
     "build": "babel src -d lib",
     "prepublish": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "ci": "echo Nothing"
+    "test": "_mocha test --recursive --compilers js:babel-core/register --timeout 5000",
+    "lint": "esw --quiet",
+    "coverage": "istanbul cover _mocha -- test --recursive --compilers js:babel-core/register",
+    "ci": "npm run lint && npm run coverage"
   },
   "author": "",
   "license": "ISC",
@@ -25,8 +27,9 @@
     "babel-preset-stage-3": "^6.5.0",
     "chai": "^3.5.0",
     "eslint": "^2.7.0",
+    "eslint-config-leisurelink": "^1.0.1",
     "eslint-watch": "^2.1.10",
-    "istanbul": "^0.4.3",
+    "istanbul": "1.0.0-alpha.2",
     "mocha": "^2.4.5"
   }
 }
