@@ -4,7 +4,7 @@
   "description": "A suppository for Joi schemas.",
   "main": "index.js",
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "babel src -d lib -s inline",
     "prepublish": "npm run build",
     "test": "_mocha test --recursive --compilers js:babel-core/register --timeout 5000",
     "lint": "esw --quiet",
