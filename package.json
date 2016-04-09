@@ -1,6 +1,6 @@
 {
   "name": "@leisurelink/joi-box",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A suppository for Joi schemas.",
   "main": "index.js",
   "scripts": {
