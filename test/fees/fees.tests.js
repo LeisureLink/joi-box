@@ -178,7 +178,7 @@ describe('fee schema validation', () => {
       });
 
       it('should not allow other properties in appliesTo', () => {
-        testReqFee.appliesTo = [{ unitId: '1234567', random: 'random' }];
+        testReqFee.appliesTo = [{ source: 'unitId', sourceId: '1234567', random: 'random' }];
         let { error } = Joi.validate(testReqFee, feesSchema.mutableFields);
         expect(error).to.exist;
         expect(error.toString()).to.have.string('"random" is not allowed');
