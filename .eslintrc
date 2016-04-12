@@ -7,7 +7,6 @@
     "sourceType": "module"
   },
   "rules": {
-    "consistent-return": 1,
-    "strict": 1
+    "consistent-return": 0
   }
 }
