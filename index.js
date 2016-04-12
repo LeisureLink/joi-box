@@ -1,1 +1,1 @@
-module.exports = require('./lib/common');
+module.exports = require('./lib');

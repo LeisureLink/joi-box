@@ -1,4 +1,4 @@
 {
-  "plugins": ["add-module-exports"],
+  "plugins": ["add-module-exports", "transform-export-extensions"],
   "presets": ["es2015-node4", "async-to-bluebird", "stage-3"]
 }
