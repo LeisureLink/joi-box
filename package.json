@@ -13,6 +13,10 @@
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/LeisureLink/joi-box.git"
+  },
   "dependencies": {
     "joi": "^8.0.5",
     "mod.js": "^1.0.4"
@@ -22,6 +26,7 @@
     "babel-core": "^6.7.4",
     "babel-eslint": "^6.0.2",
     "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-plugin-transform-export-extensions": "^6.5.0",
     "babel-preset-async-to-bluebird": "^1.0.0",
     "babel-preset-es2015-node4": "^2.1.0",
     "babel-preset-stage-3": "^6.5.0",
@@ -30,6 +35,7 @@
     "eslint-config-leisurelink": "^1.0.1",
     "eslint-watch": "^2.1.10",
     "istanbul": "1.0.0-alpha.2",
+    "lodash": "^4.10.0",
     "mocha": "^2.4.5"
   }
 }
