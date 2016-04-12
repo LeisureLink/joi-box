@@ -1,4 +1,5 @@
-let Joi = require('joi');
+import Joi from 'joi';
+import shortIdSchema from '../common/shortId';
 
 let mutableFields = Joi.object({
   calendarType: Joi.string().valid(['INVENTORY', 'CONFIRMATION_METHOD']).description('Enum value for calendarType'),
@@ -11,7 +12,7 @@ let mutableFieldsStrict = mutableFields.requiredKeys(
 );
 
 let postFields = mutableFieldsStrict.keys({
-  calendarId: joiBox.shortId.required()
+  calendarId: shortIdSchema.required()
 });
 
 module.exports = {
