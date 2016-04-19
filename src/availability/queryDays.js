@@ -5,5 +5,5 @@ export default Joi.number()
   .max(730)
   .description('Number of days to query, starting with today')
   .example(180)
-  .default(30)
+  .default(30);
 
