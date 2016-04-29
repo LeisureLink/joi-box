@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 import appliesToSchema from './appliesTo';
-import dateRangeSchema from '../common/dateRange';
+import { endOptional as dateRangeSchema } from '../common/dateRange';
 import feeIdSchema from './feeId';
 import pmcIdSchema from '../pmc/pmcId';
 
