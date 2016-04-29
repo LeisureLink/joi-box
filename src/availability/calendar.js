@@ -1,6 +1,3 @@
-
-let joiBox = require('@leisurelink/joi-box').common;
-
 import Joi from 'joi';
 import shortId from '../common/shortId';
 
