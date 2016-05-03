@@ -1,5 +1,3 @@
-'use strict';
-
 import { expect } from 'chai';
 import Joi from 'joi';
 import imageSchemas from '../../src/images';

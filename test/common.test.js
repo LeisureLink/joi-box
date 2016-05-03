@@ -32,5 +32,4 @@ describe('Common Schemas', () => {
       expect(common.shortId.isJoi).to.be.true;
     });
   });
-  
 });
