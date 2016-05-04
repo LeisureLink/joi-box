@@ -9,7 +9,7 @@
     "test": "_mocha test --recursive --compilers js:babel-core/register --timeout 5000",
     "lint": "esw --quiet",
     "coverage": "istanbul cover _mocha -- test --recursive --compilers js:babel-core/register",
-    "ci": "npm run lint && npm run coverage"
+    "ci": "npm run coverage"
   },
   "author": "",
   "license": "ISC",
