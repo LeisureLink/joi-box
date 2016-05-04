@@ -1,61 +1,77 @@
 import { expect } from 'chai';
 import Joi from 'joi';
-import imageSchemas from '../../src/images';
+import { imageUpload } from '../../src/images';
 
 describe('Image Schemas', () => {
-  describe('Single Upload Schema', () => {
+  describe('Mutable Fields', () => {
     it('should pass validation given a correct image object', () => {
       let correctImage =
         {
-          url: 'something.com',
-          title: 'test',
           description: 'test',
           categories: ['test1', 'test2'],
           isDefault: true,
           order: 0
         };
 
-      let result = Joi.validate(correctImage, imageSchemas.singleUploadSchema);
+      let result = Joi.validate(correctImage, imageUpload.mutableFields('Mutable Fields'));
       expect(result.error).to.be.null;
     });
 
     it('should fail validation given an incorrect image object', () => {
       let incorrectImage = {
-        unitId: null,
-        title: 'test',
-        description: 'test',
-        categories: ['test1', 'test2'],
-        isDefault: true,
-        order: 0
+        unitId: null
       };
 
-      let result = Joi.validate(incorrectImage, imageSchemas.singleUploadSchema);
+      let result = Joi.validate(incorrectImage, imageUpload.mutableFields('Mutable Fields'));
       expect(result.error).to.not.be.null;
     });
   });
 
-  describe('Multiple Upload Schema', () => {
+  describe('Mutable Fields Strict', () => {
+    it('should pass validation given a correct image object', () => {
+      let correctImageObject = {
+          url: 'something.com',
+          title: 'test'
+      };
+
+      let result = Joi.validate(correctImageObject, imageUpload.mutableFieldsStrict('Mutable Fields Strict'));
+      expect(result.error).to.be.null;
+    });
+
+    it('should fail validation if the image object is invalid', () => {
+      let incorrectImage = {
+        title: 'test2',
+        description: 'test2',
+        categories: ['test1', 'test2'],
+        isDefault: true,
+        order: 1
+      };
+
+      let result = Joi.validate(incorrectImage, imageUpload.mutableFieldsStrict('Mutable Fields Strict'));
+      expect(result.error).to.not.be.null;
+    });
+  });
+
+  describe('Multiple Mutable Fields Strict', () => {
     it('should pass validation given a correct array of image objects', () => {
       let correctImageArray = [
         {
           url: 'something.com',
           title: 'test',
           description: 'test',
-          categories: ['test1', 'test2'],
           isDefault: true,
           order: 0
         },
         {
           url: 'something2.com',
           title: 'test2',
-          description: 'test2',
           categories: ['test1', 'test2'],
           isDefault: true,
           order: 1
         }
       ];
 
-      let result = Joi.validate(correctImageArray, imageSchemas.multipleUploadSchema);
+      let result = Joi.validate(correctImageArray, imageUpload.multipleMutableFieldsStrict('Multiple Mutable Fields Strict'));
       expect(result.error).to.be.null;
     });
 
@@ -79,7 +95,7 @@ describe('Image Schemas', () => {
 
       let incorrectImageArray = [correctImage, incorrectImage];
 
-      let result = Joi.validate(incorrectImageArray, imageSchemas.multipleUploadSchema);
+      let result = Joi.validate(incorrectImageArray, imageUpload.multipleMutableFieldsStrict('Multiple Mutable Fields Strict'));
       expect(result.error).to.not.be.null;
     });
   });
