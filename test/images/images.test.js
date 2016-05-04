@@ -1,17 +1,17 @@
-import { expect } from 'chai';
+import {expect} from 'chai';
 import Joi from 'joi';
-import { imageUpload } from '../../src/images';
+import {imageUpload} from '../../src/images';
 
 describe('Image Schemas', () => {
   describe('Mutable Fields', () => {
     it('should pass validation given a correct image object', () => {
       let correctImage =
-        {
-          description: 'test',
-          categories: ['test1', 'test2'],
-          isDefault: true,
-          order: 0
-        };
+      {
+        description: 'test',
+        categories: ['test1', 'test2'],
+        isDefault: true,
+        order: 0
+      };
 
       let result = Joi.validate(correctImage, imageUpload.mutableFields('Mutable Fields'));
       expect(result.error).to.be.null;
