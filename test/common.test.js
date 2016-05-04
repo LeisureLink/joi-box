@@ -32,4 +32,10 @@ describe('Common Schemas', () => {
       expect(common.shortId.isJoi).to.be.true;
     });
   });
+
+  describe('bool', () => {
+    it('should expose a Joi Object', () => {
+      expect(common.bool('description!').isJoi).to.be.true;
+    });
+  });
 });
