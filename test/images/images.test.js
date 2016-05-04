@@ -30,8 +30,8 @@ describe('Image Schemas', () => {
   describe('Mutable Fields Strict', () => {
     it('should pass validation given a correct image object', () => {
       let correctImageObject = {
-          url: 'something.com',
-          title: 'test'
+        url: 'something.com',
+        title: 'test'
       };
 
       let result = Joi.validate(correctImageObject, imageUpload.mutableFieldsStrict('Mutable Fields Strict'));
