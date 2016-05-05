@@ -11,13 +11,7 @@ describe('Common Schemas', () => {
 
   describe('dateRange', () => {
     it('should expose a Joi Object', () => {
-      expect(common.dateRange('description!').isJoi).to.be.true;
-    });
-  });
-
-  describe('dayId', () => {
-    it('should expose a Joi Object', () => {
-      expect(common.dayId.isJoi).to.be.true;
+      expect(common.dateRange.mutableFields('description!').isJoi).to.be.true;
     });
   });
 
@@ -39,5 +33,9 @@ describe('Common Schemas', () => {
     });
   });
 
-
+  describe('bool', () => {
+    it('should expose a Joi Object', () => {
+      expect(common.bool('description!').isJoi).to.be.true;
+    });
+  });
 });
