@@ -25,7 +25,7 @@ describe.only('Image Schemas', () => {
 
       expect(() => {
         Joi.attempt(incorrectImage, imageUpload.mutableFields('Mutable Fields'));
-      }).to.throw(/"unitId" is not allowed/);                      
+      }).to.throw(/"unitId" is not allowed/);
     });
   });
 
@@ -35,7 +35,7 @@ describe.only('Image Schemas', () => {
         url: 'something.com',
         title: 'test'
       };
-      
+
       expect(() => {
         Joi.attempt(correctImageObject, imageUpload.mutableFieldsStrict('Mutable Fields Strict'));
       }).to.not.throw();
@@ -74,7 +74,7 @@ describe.only('Image Schemas', () => {
           order: 1
         }
       ];
-      
+
       expect(() => {
         Joi.attempt(correctImageArray, imageUpload.multipleMutableFieldsStrict('Multiple Mutable Fields Strict'));
       }).to.not.throw();

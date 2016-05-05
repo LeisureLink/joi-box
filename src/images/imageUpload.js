@@ -10,7 +10,7 @@ let mutableFields = description => Joi.object({
 }).description(description);
 
 let mutableFieldsStrict = description => mutableFields(description).requiredKeys(
-  'url'  
+  'url'
 );
 
 let multipleMutableFieldsStrict = description => Joi.array().items(mutableFieldsStrict(description));
