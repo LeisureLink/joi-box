@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import Joi from 'joi';
 import { imageUpload } from '../../src/images';
 
-describe('Image Schemas', () => {
+describe.only('Image Schemas', () => {
   describe('Mutable Fields', () => {
     it('should pass validation given a correct image object', () => {
       let correctImage =
@@ -13,8 +13,9 @@ describe('Image Schemas', () => {
           order: 0
         };
 
-      let result = Joi.validate(correctImage, imageUpload.mutableFields('Mutable Fields'));
-      expect(result.error).to.be.null;
+      expect(() => {
+        Joi.attempt(correctImage, imageUpload.mutableFields('Mutable Fields'));
+      }).to.not.throw();
     });
 
     it('should fail validation given an incorrect image object', () => {
@@ -22,8 +23,9 @@ describe('Image Schemas', () => {
         unitId: null
       };
 
-      let result = Joi.validate(incorrectImage, imageUpload.mutableFields('Mutable Fields'));
-      expect(result.error).to.not.be.null;                               
+      expect(() => {
+        Joi.attempt(incorrectImage, imageUpload.mutableFields('Mutable Fields'));
+      }).to.throw(/"unitId" is not allowed/);                      
     });
   });
 
@@ -33,9 +35,10 @@ describe('Image Schemas', () => {
         url: 'something.com',
         title: 'test'
       };
-
-      let result = Joi.validate(correctImageObject, imageUpload.mutableFieldsStrict('Mutable Fields Strict'));
-      expect(result.error).to.be.null;
+      
+      expect(() => {
+        Joi.attempt(correctImageObject, imageUpload.mutableFieldsStrict('Mutable Fields Strict'));
+      }).to.not.throw();
     });
 
     it('should fail validation if the image object is invalid', () => {
@@ -47,8 +50,9 @@ describe('Image Schemas', () => {
         order: 1
       };
 
-      let result = Joi.validate(incorrectImage, imageUpload.mutableFieldsStrict('Mutable Fields Strict'));
-      expect(result.error).to.not.be.null;
+      expect(() => {
+        Joi.attempt(incorrectImage, imageUpload.mutableFieldsStrict('Mutable Fields Strict'));
+      }).to.throw(/"url" is required/);
     });
   });
 
@@ -70,9 +74,10 @@ describe('Image Schemas', () => {
           order: 1
         }
       ];
-
-      let result = Joi.validate(correctImageArray, imageUpload.multipleMutableFieldsStrict('Multiple Mutable Fields Strict'));
-      expect(result.error).to.be.null;
+      
+      expect(() => {
+        Joi.attempt(correctImageArray, imageUpload.multipleMutableFieldsStrict('Multiple Mutable Fields Strict'));
+      }).to.not.throw();
     });
 
     it('should fail validation if an image inside of the array is invalid', () => {
@@ -95,8 +100,9 @@ describe('Image Schemas', () => {
 
       let incorrectImageArray = [correctImage, incorrectImage];
 
-      let result = Joi.validate(incorrectImageArray, imageUpload.multipleMutableFieldsStrict('Multiple Mutable Fields Strict'));
-      expect(result.error).to.not.be.null;
+      expect(() => {
+        Joi.attempt(incorrectImageArray, imageUpload.multipleMutableFieldsStrict('Multiple Mutable Fields Strict'));
+      }).to.throw(/"url" is required/);
     });
   });
 });
