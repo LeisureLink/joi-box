@@ -25,7 +25,7 @@ describe('Media Files Schemas', () => {
 
       expect(() => {
         Joi.attempt(incorrectMedia, mediaUpload.mutableFields('Mutable Fields'));
-      }).to.throw(/'unitId' is not allowed/);
+      }).to.throw(/"unitId" is not allowed/);
     });
   });
 
@@ -52,7 +52,7 @@ describe('Media Files Schemas', () => {
 
       expect(() => {
         Joi.attempt(incorrectMedia, mediaUpload.mutableFieldsStrict('Mutable Fields Strict'));
-      }).to.throw(/'url' is required/);
+      }).to.throw(/"url" is required/);
     });
   });
 
@@ -102,7 +102,7 @@ describe('Media Files Schemas', () => {
 
       expect(() => {
         Joi.attempt(incorrectMediaArray, mediaUpload.multipleMutableFieldsStrict('Multiple Mutable Fields Strict'));
-      }).to.throw(/'url' is required/);
+      }).to.throw(/"url" is required/);
     });
   });
 });
