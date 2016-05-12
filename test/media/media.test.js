@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import Joi from 'joi';
-import { imageUpload } from '../../src/images';
+import { mediaUpload } from '../../src/media';
 
-describe.only('Image Schemas', () => {
+describe('Media Files Schemas', () => {
   describe('Mutable Fields', () => {
-    it('should pass validation given a correct image object', () => {
-      let correctImage =
+    it('should pass validation given a correct media file object', () => {
+      let correctMedia =
         {
           description: 'test',
           categories: ['test1', 'test2'],
@@ -14,35 +14,35 @@ describe.only('Image Schemas', () => {
         };
 
       expect(() => {
-        Joi.attempt(correctImage, imageUpload.mutableFields('Mutable Fields'));
+        Joi.attempt(correctMedia, mediaUpload.mutableFields('Mutable Fields'));
       }).to.not.throw();
     });
 
-    it('should fail validation given an incorrect image object', () => {
-      let incorrectImage = {
+    it('should fail validation given an incorrect media file object', () => {
+      let incorrectMedia = {
         unitId: null
       };
 
       expect(() => {
-        Joi.attempt(incorrectImage, imageUpload.mutableFields('Mutable Fields'));
+        Joi.attempt(incorrectMedia, mediaUpload.mutableFields('Mutable Fields'));
       }).to.throw(/"unitId" is not allowed/);
     });
   });
 
   describe('Mutable Fields Strict', () => {
-    it('should pass validation given a correct image object', () => {
-      let correctImageObject = {
+    it('should pass validation given a correct media file object', () => {
+      let correctMediaObject = {
         url: 'something.com',
         title: 'test'
       };
 
       expect(() => {
-        Joi.attempt(correctImageObject, imageUpload.mutableFieldsStrict('Mutable Fields Strict'));
+        Joi.attempt(correctMediaObject, mediaUpload.mutableFieldsStrict('Mutable Fields Strict'));
       }).to.not.throw();
     });
 
-    it('should fail validation if the image object is invalid', () => {
-      let incorrectImage = {
+    it('should fail validation if the media file object is invalid', () => {
+      let incorrectMedia = {
         title: 'test2',
         description: 'test2',
         categories: ['test1', 'test2'],
@@ -51,14 +51,14 @@ describe.only('Image Schemas', () => {
       };
 
       expect(() => {
-        Joi.attempt(incorrectImage, imageUpload.mutableFieldsStrict('Mutable Fields Strict'));
+        Joi.attempt(incorrectMedia, mediaUpload.mutableFieldsStrict('Mutable Fields Strict'));
       }).to.throw(/"url" is required/);
     });
   });
 
   describe('Multiple Mutable Fields Strict', () => {
-    it('should pass validation given a correct array of image objects', () => {
-      let correctImageArray = [
+    it('should pass validation given a correct array of media file objects', () => {
+      let correctMediaArray = [
         {
           url: 'something.com',
           title: 'test',
@@ -76,12 +76,12 @@ describe.only('Image Schemas', () => {
       ];
 
       expect(() => {
-        Joi.attempt(correctImageArray, imageUpload.multipleMutableFieldsStrict('Multiple Mutable Fields Strict'));
+        Joi.attempt(correctMediaArray, mediaUpload.multipleMutableFieldsStrict('Multiple Mutable Fields Strict'));
       }).to.not.throw();
     });
 
-    it('should fail validation if an image inside of the array is invalid', () => {
-      let correctImage = {
+    it('should fail validation if an media file inside of the array is invalid', () => {
+      let correctMedia = {
         url: 'something.com',
         title: 'test',
         description: 'test',
@@ -90,7 +90,7 @@ describe.only('Image Schemas', () => {
         order: 0
       };
 
-      let incorrectImage = {
+      let incorrectMedia = {
         title: 'test2',
         description: 'test2',
         categories: ['test1', 'test2'],
@@ -98,10 +98,10 @@ describe.only('Image Schemas', () => {
         order: 1
       };
 
-      let incorrectImageArray = [correctImage, incorrectImage];
+      let incorrectMediaArray = [correctMedia, incorrectMedia];
 
       expect(() => {
-        Joi.attempt(incorrectImageArray, imageUpload.multipleMutableFieldsStrict('Multiple Mutable Fields Strict'));
+        Joi.attempt(incorrectMediaArray, mediaUpload.multipleMutableFieldsStrict('Multiple Mutable Fields Strict'));
       }).to.throw(/"url" is required/);
     });
   });
