@@ -2,7 +2,7 @@ import joi from 'joi';
 
 export default joi.string()
   .label('currencyCode')
-  .meta({ className: 'currencyCode'})
+  .meta({ className: 'currencyCode' })
   .valid([
     'AED','AFN','ALL','AMD','ANG','AOA','ARS','AUD','AWG','AZN','BAM','BBD',
     'BDT','BGN','BHD','BIF','BMD','BND','BOB','BOV','BRL','BSD','BTN','BWP',
