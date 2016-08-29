@@ -40,7 +40,7 @@ describe('Common Schemas', () => {
     });
   });
 
-  describe.only('currencyCode', () =>{
+  describe('currencyCode', () =>{
     it('should expose a joi object', () =>{
       expect(common.currencyCode.isJoi).to.be.true;
     });
@@ -66,6 +66,74 @@ describe('Common Schemas', () => {
     it('Uppercases codezes', () =>{
       let value = joi.attempt('zwl', common.currencyCode);
       expect(value).to.equal('ZWL');
+    });
+  });
+  describe('currencyAmount', () => {
+
+    it('Does not allow empty strings', () => {
+      expect(() => joi.attempt('', common.currencyAmount)).to.throw();
+    });
+
+    it('Does not allow numbers', () => {
+      expect(() => joi.attempt(100.23, common.currencyAmount)).to.throw();
+    });
+
+    it('Does not allow non-numeric strings', () => {
+      expect(() => joi.attempt('asdf', common.currencyAmount)).to.throw();
+    });
+
+    it('Does not allow strings with decimals', () => {
+      expect(() => joi.attempt('100.23', common.currencyAmount)).to.throw();
+    });
+
+    it('Does not allow strings with commas', () => {
+      expect(() => joi.attempt('100,232', common.currencyAmount)).to.throw();
+    });
+
+    it('Allows positive integer strings', () => {
+      expect(() => joi.attempt('100232', common.currencyAmount)).to.not.throw();
+    });
+
+    it('Allows negative integer strings', () => {
+      expect(() => joi.attempt('-100232', common.currencyAmount)).to.not.throw();
+    });
+
+    it('Allows zero strings', () => {
+      expect(() => joi.attempt('0', common.currencyAmount)).to.not.throw();
+    });
+  });
+  describe('positiveCurrencyAmount', () => {
+
+    it('Does not allow empty strings', () => {
+      expect(() => joi.attempt('', common.positiveCurrencyAmount)).to.throw();
+    });
+
+    it('Does not allow numbers', () => {
+      expect(() => joi.attempt(100.23, common.positiveCurrencyAmount)).to.throw();
+    });
+
+    it('Does not allow non-numeric strings', () => {
+      expect(() => joi.attempt('asdf', common.positiveCurrencyAmount)).to.throw();
+    });
+
+    it('Does not allow strings with decimals', () => {
+      expect(() => joi.attempt('100.23', common.positiveCurrencyAmount)).to.throw();
+    });
+
+    it('Does not allow strings with commas', () => {
+      expect(() => joi.attempt('100,232', common.positiveCurrencyAmount)).to.throw();
+    });
+
+    it('Allows positive integer strings', () => {
+      expect(() => joi.attempt('100232', common.positiveCurrencyAmount)).to.not.throw();
+    });
+
+    it('Does not allow negative integer strings', () => {
+      expect(() => joi.attempt('-100232', common.positiveCurrencyAmount)).to.throw();
+    });
+
+    it('Does not allow zero strings', () => {
+      expect(() => joi.attempt('0', common.positiveCurrencyAmount)).to.throw();
     });
   });
 });
