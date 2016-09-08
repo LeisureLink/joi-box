@@ -3,7 +3,7 @@ import Joi from 'joi';
 let uploadFields = description => Joi.object({
   title: Joi.string(),
   description: Joi.string(),
-  categories: Joi.array(),
+  categories: Joi.string(),
   isDefault: Joi.bool().default(false),
   order: Joi.number().min(0).default(0),
   file: Joi.any()
